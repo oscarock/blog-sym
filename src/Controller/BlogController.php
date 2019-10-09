@@ -20,9 +20,5 @@ class BlogController extends AbstractController
             'blog/index.html.twig',
             array('blogs' => $blogs)
         );
-
-        /*return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
-        ]);*/
     }
 }
