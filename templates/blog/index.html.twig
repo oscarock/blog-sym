@@ -13,12 +13,11 @@
             <!--<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
             <img class="card-img-top" src="{{ blog.image }}" alt="Card image cap">
             <div class="card-body">
-                <h2 class="card-title">{{ blog.title }}</h2>
                 <p class="card-text">{{ blog.body  }}</p>
                 <a href="#" class="btn btn-primary">Ver Mas &rarr;</a>
             </div>
             <div class="card-footer text-muted">
-                Creado  Por
+                Creado {{ blog.created|date('Y-m-d')  }} Por
                 <a href="#">{{ blog.author  }}</a>
             </div>
             </div>
@@ -74,26 +73,4 @@
         </div>
     </div>
 </div>
-
-
-<br>
-<table>
-    <tr>
-        <th>Tema</th>
-        <th>Titulo</th>
-        <th>Cuerpo</th>
-        <th>Author</th>
-        <th>Imagen</th>
-    </tr>
-    {% for blog in blogs %}
-    <tr>
-        <td>{{ blog.topic }}</td>
-        <td>{{ blog.title }}</td>
-        <td>{{ blog.body }}</td>
-        <td>{{ blog.author }}</td>
-        <td>{{ blog.image }}</td>
-    </tr>
-    {% endfor %}  
-</table>   
-
 {% endblock %}

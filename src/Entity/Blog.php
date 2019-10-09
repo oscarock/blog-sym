@@ -42,9 +42,9 @@ class Blog
     private $image;
     
     /**
-     * @ORM\Column(type="datetime", name="created_at")
+     * @ORM\Column(type="datetime")
     */
-    private $createdAt;
+    private $created;
 
     public function getId(): ?int
     {
@@ -140,7 +140,7 @@ class Blog
     }
 
     /**
-     * Set the value of urlImage
+     * Set the value of image
      *
      * @return  self
      */ 
@@ -152,21 +152,21 @@ class Blog
     }
 
     /**
-     * Get the value of createdAt
+     * Get the value of created
      */ 
-    public function getCreatedAt()
+    public function getCreated()
     {
-        return $this->createdAt;
+        return $this->created;
     }
 
     /**
-     * Set the value of createdAt
+     * Set the value of created
      *
      * @return  self
      */ 
-    public function setCreatedAt($createdAt)
+    public function setCreated($created)
     {
-        $this->createdAt = $createdAt;
+        $this->created = $created;
 
         return $this;
     }
