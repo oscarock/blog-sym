@@ -13,11 +13,12 @@
             <!--<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
             <img class="card-img-top" src="{{ blog.image }}" alt="Card image cap">
             <div class="card-body">
+                <h6 class="card-title"><b>Categoria:</b> {{ blog.topic }}</h6>
                 <p class="card-text">{{ blog.body  }}</p>
                 <a href="#" class="btn btn-primary">Ver Mas &rarr;</a>
             </div>
             <div class="card-footer text-muted">
-                Creado {{ blog.created|date('Y-m-d')  }} Por
+                Creado {{ blog.created|date('Y-m-d') }} Por
                 <a href="#">{{ blog.author  }}</a>
             </div>
             </div>
