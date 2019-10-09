@@ -37,9 +37,9 @@ class Blog
     private $author;
 
     /**
-     * @ORM\Column(type="text", name="url_image")
+     * @ORM\Column(type="text")
     */
-    private $urlImage;
+    private $image;
     
     /**
      * @ORM\Column(type="datetime", name="created_at")
@@ -132,11 +132,11 @@ class Blog
     }
 
     /**
-     * Get the value of urlImage
+     * Get the value of image
      */ 
-    public function getUrlImage()
+    public function getImage()
     {
-        return $this->urlImage;
+        return $this->image;
     }
 
     /**
@@ -144,9 +144,9 @@ class Blog
      *
      * @return  self
      */ 
-    public function setUrlImage($urlImage)
+    public function setImage($image)
     {
-        $this->urlImage = $urlImage;
+        $this->image = $image;
 
         return $this;
     }
