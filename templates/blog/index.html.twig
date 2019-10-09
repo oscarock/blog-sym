@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+<br>
+<table>
+    <tr>
+        <th>Tema</th>
+        <th>Titulo</th>
+        <th>Cuerpo</th>
+        <th>Author</th>
+        <th>Imagen</th>
+    </tr>
+    {% for blog in blogs %}
+    <tr>
+        <td>{{ blog.topic }}</td>
+        <td>{{ blog.title }}</td>
+        <td>{{ blog.body }}</td>
+        <td>{{ blog.author }}</td>
+        <td>{{ blog.url_image }}</td>
+    </tr>
+    {% endfor %}  
+</table>   
+
+{% endblock %}
