@@ -53,6 +53,8 @@ class BlogController extends AbstractController
             $em->persist($blogs);
             $em->flush();
 
+            $this->addFlash('success', 'Formulario Guardado correctamente.');
+
             return $this->redirect('/blog/');
 
         }
@@ -104,6 +106,9 @@ class BlogController extends AbstractController
         if ($form->isSubmitted()) {
             $blog = $form->getData();
             $do->flush();
+
+            $this->addFlash('success', 'Formulario Editado correctamente.');
+
             return $this->redirect('/blog/');
         }
 
