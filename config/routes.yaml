@@ -12,3 +12,7 @@ new:
 show:
   path: /show/{id}
   controller: App\Controller\BlogController::show
+
+edit:
+  path: /edit/{id}
+  controller: App\Controller\BlogController::edit

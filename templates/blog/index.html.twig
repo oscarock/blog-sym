@@ -20,7 +20,7 @@
                 <div class="card-footer text-muted">
                     Creado {{ blog.created|date('Y-m-d') }} Por
                     <a href="#">{{ blog.author  }}</a>
-                    <a href="#" class="btn btn-link btn-sm float-right">Editar</a>
+                    <a href="{{ path('edit', {'id': blog.id}) }}" class="btn btn-link btn-sm float-right">Editar</a>
                 </div>
             </div>
         </div>
