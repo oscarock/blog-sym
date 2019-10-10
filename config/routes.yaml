@@ -4,3 +4,7 @@
 index:
   path: /blog
   controller: App\Controller\BlogController::index
+
+new:
+  path: /new
+  controller: App\Controller\BlogController::new
