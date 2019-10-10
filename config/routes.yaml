@@ -8,3 +8,7 @@ index:
 new:
   path: /new
   controller: App\Controller\BlogController::new
+
+show:
+  path: /show/{id}
+  controller: App\Controller\BlogController::show

@@ -37,30 +37,51 @@ class BlogController extends AbstractController
         //$blogs->setDueDate(new \DateTime('tomorrow'));
 
         $form = $this->createFormBuilder($blogs)
-            ->add('topic', ChoiceType::class, ['choices' => ['Juegos' => 'juegos', 'Tecnologia' => 'tecnologia', 'Belleza' => 'belleza'], 'label' => 'Categoria', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Categoria']])
-            ->add('title', TextType::class, ['label' => 'Titulo', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo']])
-            ->add('body', TextareaType::class, ['label' => 'Contenido', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Contenido']])
-            ->add('author', TextType::class, ['label' => 'Autor', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Autor']])
-            ->add('image', TextareaType::class, ['label' => 'Url Imagen', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Url Imagen']])
-            ->add('save', SubmitType::class, ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-success form-control mt-3']])
-            ->getForm();
+        ->add('topic', ChoiceType::class, ['choices' => ['Juegos' => 'juegos', 'Tecnologia' => 'tecnologia', 'Belleza' => 'belleza'], 'label' => 'Categoria', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Categoria']])
+        ->add('title', TextType::class, ['label' => 'Titulo', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo']])
+        ->add('body', TextareaType::class, ['label' => 'Contenido', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Contenido']])
+        ->add('author', TextType::class, ['label' => 'Autor', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Autor']])
+        ->add('image', TextareaType::class, ['label' => 'Url Imagen', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Url Imagen']])
+        ->add('save', SubmitType::class, ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-success form-control mt-3']])
+        ->getForm();
 
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
-            if ($form->isSubmitted()) {
+        if ($form->isSubmitted()) {
 
-                $blogs = $form->getData();
+            $blogs = $form->getData();
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($blogs);
-                $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($blogs);
+            $em->flush();
 
-                return $this->redirect('/blog/');
+            return $this->redirect('/blog/');
 
-            }
+        }
 
-            return $this->render('blog/new.html.twig', array(
-                'form' => $form->createView(),
-            ));
+        return $this->render('blog/new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/show", name="show")
+     */
+    public function show($id)
+    {
+        $blog = $this->getDoctrine()
+            ->getRepository('App\Entity\Blog')
+            ->find($id);
+
+        if(!$blog){
+            throw $this->createNotFoundException(
+                'No se encontro el id'. $id
+            );
+        }
+
+        return $this->render(
+            'blog/show.html.twig',
+            array('blog' => $blog)
+        );
     }
 }

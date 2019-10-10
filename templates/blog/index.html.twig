@@ -14,8 +14,8 @@
                 <img class="card-img-top" src="{{ blog.image }}" alt="Card image cap">
                 <div class="card-body">
                     <h6 class="card-title"><b>Categoria:</b> {{ blog.topic }}</h6>
-                    <p class="card-text">{{ blog.body  }}</p>
-                    <a href="#" class="btn btn-primary">Ver Mas &rarr;</a>
+                    <p class="card-text">{{ blog.body|length > 100 ? blog.body|slice(0, 100) ~ '...' : blog.body  }}</p>
+                    <a href="{{ path('show', {'id': blog.id}) }}" class="btn btn-primary" target="_blank">Ver Mas &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Creado {{ blog.created|date('Y-m-d') }} Por
