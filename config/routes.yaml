@@ -20,3 +20,7 @@ edit:
 search:
   path: /search
   controller: App\Controller\BlogController::searchTittle
+
+search_category:
+  path: /search/{category}
+  controller: App\Controller\BlogController::searchCategory

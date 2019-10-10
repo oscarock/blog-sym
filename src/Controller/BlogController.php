@@ -132,4 +132,23 @@ class BlogController extends AbstractController
         );
     }
 
+    public function searchCategory(Request $request, $category){
+        $em = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('App\Entity\Blog');
+
+        if ($category) {
+            $blogs = $em->findBy(['topic' => $category]);
+        } 
+
+        if($category == "todas"){
+            $blogs = $em->findAll();
+        }
+
+        return $this->render(
+            'blog/index.html.twig',
+            array('blogs' => $blogs)
+        );
+    }
+
 }
