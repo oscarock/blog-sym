@@ -18,8 +18,8 @@ class BlogController extends AbstractController
         $blogs = $this->getDoctrine()
             ->getRepository('App\Entity\Blog')
             ->findAll();
-
-        return $this->render(
+        
+            return $this->render(
             'blog/index.html.twig',
             array('blogs' => $blogs)
         );
@@ -112,5 +112,24 @@ class BlogController extends AbstractController
         ));
     }
 
+    public function searchTittle(Request $request){
+        $em = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('App\Entity\Blog');
+
+        $search = $request->query->get('search');
+
+        if ($search) {
+            $blogs = $em->findBy(['title' => $search]);
+        } else {
+            $blogs = $em->findAll();
+            
+        }
+
+        return $this->render(
+            'blog/index.html.twig',
+            array('blogs' => $blogs)
+        );
+    }
 
 }

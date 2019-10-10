@@ -16,3 +16,7 @@ show:
 edit:
   path: /edit/{id}
   controller: App\Controller\BlogController::edit
+
+search:
+  path: /search
+  controller: App\Controller\BlogController::searchTittle
