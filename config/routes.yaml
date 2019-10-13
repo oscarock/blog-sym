@@ -28,3 +28,11 @@ search_category:
 contact:
   path: /contact
   controller: App\Controller\ContactController::new
+
+register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+logout:
+  path: /logout
+  controller: App\Controller\SecurityController::logout
