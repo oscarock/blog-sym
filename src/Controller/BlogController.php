@@ -7,6 +7,7 @@ use App\Form\BlogFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class BlogController extends AbstractController
 {
@@ -26,20 +27,26 @@ class BlogController extends AbstractController
     }
 
     /**
+     * @Route("/my_blogs", name="my_blogs")
+     */
+    public function my_blogs()
+    {
+        $blogs = $this->getDoctrine()
+            ->getRepository('App\Entity\Blog')
+            ->findBy(['user' => $this->getUser()]);
+            
+            return $this->render(
+            'blog/index.html.twig',
+            array('blogs' => $blogs)
+        );
+    }
+
+    /**
      * @Route("/new", name="new")
     */
-    public function new(Request $request)
+    public function new(EntityManagerInterface $em, Request $request)
     {
         $blogs = new Blog();
-
-        /*$form = $this->createFormBuilder($blogs)
-        ->add('topic', ChoiceType::class, ['choices' => ['Juegos' => 'juegos', 'Tecnologia' => 'tecnologia', 'Belleza' => 'belleza'], 'label' => 'Categoria', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Categoria']])
-        ->add('title', TextType::class, ['label' => 'Titulo', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo']])
-        ->add('body', TextareaType::class, ['label' => 'Contenido', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Contenido']])
-        ->add('author', TextType::class, ['label' => 'Autor', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Autor']])
-        ->add('image', TextareaType::class, ['label' => 'Url Imagen', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Url Imagen']])
-        ->add('save', SubmitType::class, ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-success form-control mt-3']])
-        ->getForm();*/
 
         $form = $this->createForm(BlogFormType::class, $blogs);
 
@@ -47,7 +54,14 @@ class BlogController extends AbstractController
 
         if ($form->isSubmitted()) {
 
-            $blogs = $form->getData();
+            $data = $form->getData();
+            
+            $blogs->setTopic($form->get('topic')->getData());
+            $blogs->setTitle($form->get('title')->getData());
+            $blogs->setBody($form->get('body')->getData());
+            $blogs->setAuthor($form->get('author')->getData());
+            $blogs->setImage($form->get('image')->getData());
+            $blogs->setUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($blogs);
@@ -104,7 +118,14 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $blog = $form->getData();
+            $data = $form->getData();
+
+            $blogs->setTopic($form->get('topic')->getData());
+            $blogs->setTitle($form->get('title')->getData());
+            $blogs->setBody($form->get('body')->getData());
+            $blogs->setAuthor($form->get('author')->getData());
+            $blogs->setImage($form->get('image')->getData());
+            $blogs->setUser($this->getUser());
             $do->flush();
 
             $this->addFlash('success', 'Formulario Editado correctamente.');

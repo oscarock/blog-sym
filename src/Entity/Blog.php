@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//use Symfony\Component\Security\Core\User\UserInterface;
+//use Symfony\Component\Security\Core\Security;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -50,6 +53,12 @@ class Blog
      * @ORM\Column(type="datetime")
     */
     private $created;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    private $user;
 
     public function getId(): ?int
     {
@@ -172,6 +181,26 @@ class Blog
     public function setCreated($created)
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */ 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     *
+     * @return  self
+     */ 
+    public function setUser($user)
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -5,6 +5,10 @@ index:
   path: /blog
   controller: App\Controller\BlogController::index
 
+my_blogs:
+  path: /my_blogs
+  controller: App\Controller\BlogController::my_blogs
+
 new:
   path: /new
   controller: App\Controller\BlogController::new
