@@ -34,7 +34,7 @@ class BlogController extends AbstractController
         $blogs = $this->getDoctrine()
             ->getRepository('App\Entity\Blog')
             ->findBy(['user' => $this->getUser()]);
-            
+
             return $this->render(
             'blog/index.html.twig',
             array('blogs' => $blogs)
@@ -104,8 +104,8 @@ class BlogController extends AbstractController
     */
     public function edit(Request $request, $id)
     {
-        $do = $this->getDoctrine()->getManager();
-        $blog = $do->getRepository('App\Entity\Blog')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $blog = $em->getRepository('App\Entity\Blog')->find($id);
 
         if (!$blog) {
             throw $this->createNotFoundException(
@@ -118,15 +118,8 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $data = $form->getData();
-
-            $blogs->setTopic($form->get('topic')->getData());
-            $blogs->setTitle($form->get('title')->getData());
-            $blogs->setBody($form->get('body')->getData());
-            $blogs->setAuthor($form->get('author')->getData());
-            $blogs->setImage($form->get('image')->getData());
-            $blogs->setUser($this->getUser());
-            $do->flush();
+            $article = $form->getData();
+            $em->flush();
 
             $this->addFlash('success', 'Formulario Editado correctamente.');
 
