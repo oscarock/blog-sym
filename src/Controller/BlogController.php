@@ -58,6 +58,7 @@ class BlogController extends AbstractController
             
             $blogs->setTopic($form->get('topic')->getData());
             $blogs->setTitle($form->get('title')->getData());
+            $blogs->setSubTitle($form->get('sub_title')->getData());
             $blogs->setBody($form->get('body')->getData());
             $blogs->setAuthor($form->get('author')->getData());
             $blogs->setImage($form->get('image')->getData());

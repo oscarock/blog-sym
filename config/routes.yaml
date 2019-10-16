@@ -1,9 +1,10 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
 index:
-  path: /blog
-  controller: App\Controller\BlogController::index
+    path: /
+    controller: App\Controller\BlogController::index
+
+#index:
+  #path: /blog
+  #controller: App\Controller\BlogController::index
 
 my_blogs:
   path: /my_blogs

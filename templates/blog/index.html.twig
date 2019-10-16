@@ -12,6 +12,7 @@
                 <img class="card-img-top" src="{{ blog.image }}" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">{{ blog.title }}</h2>
+                    <small>{{ blog.subTitle }}</small>
                     <h6><b>Categoria:</b> {{ blog.topic }}</h6>  
                     <p class="card-text">{{ blog.body|length > 100 ? blog.body|slice(0, 100) ~ '...' : blog.body  }}</p>
                     <a href="{{ path('show', {'id': blog.id}) }}" class="btn btn-primary" target="_blank">Ver Mas &rarr;</a>

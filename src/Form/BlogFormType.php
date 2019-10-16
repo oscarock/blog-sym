@@ -19,6 +19,7 @@ class BlogFormType extends AbstractType
         $builder
             ->add('topic', ChoiceType::class, ['choices' => ['Juegos' => 'juegos', 'Tecnologia' => 'tecnologia', 'Belleza' => 'belleza'], 'label' => 'Categoria', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Categoria']])
             ->add('title', TextType::class, ['label' => 'Titulo', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo']])
+            ->add('sub_title', TextType::class, ['label' => 'Sub Titulo', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Sub Titulo']])
             ->add('body', TextareaType::class, ['label' => 'Contenido', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Contenido']])
             ->add('author', TextType::class, ['label' => 'Autor', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Autor']])
             ->add('image', TextareaType::class, ['label' => 'Url Imagen', 'required' => 'required', 'attr' => ['class' => 'form-control', 'placeholder' => 'Url Imagen']])

@@ -35,6 +35,11 @@ class Blog
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=60)
+    */
+    private $subTitle;
+
+    /**
      * @ORM\Column(type="text")
     */
     private $body;
@@ -201,6 +206,26 @@ class Blog
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of subTitle
+     */ 
+    public function getSubTitle()
+    {
+        return $this->subTitle;
+    }
+
+    /**
+     * Set the value of subTitle
+     *
+     * @return  self
+     */ 
+    public function setSubTitle($subTitle)
+    {
+        $this->subTitle = $subTitle;
 
         return $this;
     }
